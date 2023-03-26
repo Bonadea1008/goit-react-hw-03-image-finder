@@ -1,11 +1,10 @@
-import { Component } from 'react';
+import css from '../ImageGallery/ImageGallery.module.css';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 
-export class ImageGallery extends Component {
-  state = {
-    searchQuery: '',
-  };
-
-  render() {
-    return;
-  }
-}
+export const ImageGallery = ({ images, children }) => {
+  return (
+    <ul className={css.imageGallery}>
+      <ImageGalleryItem images={images} />
+    </ul>
+  );
+};

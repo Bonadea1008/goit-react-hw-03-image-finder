@@ -5,6 +5,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
 import { Modal } from './Modal/Modal';
 import { Button } from './Button/Button';
+import PropTypes from 'prop-types';
 import css from './App.module.css';
 
 const imagePerPage = 12;
@@ -30,7 +31,9 @@ export class App extends Component {
     if (prevState.searchQuery !== searchQuery) {
       this.setState({ images: [], page: 1, isLoad: true });
       this.getImages(searchQuery);
-    } else if (prevState.searchQuery === searchQuery && prevState.page < page) {
+    }
+
+    if (prevState.searchQuery === searchQuery && prevState.page < page) {
       this.setState({ isLoad: true });
       this.getImages(searchQuery);
     }
@@ -61,12 +64,10 @@ export class App extends Component {
   loadMoreHandler = () => {
     this.setState({
       page: this.state.page + 1,
-      isLoad: true,
     });
   };
 
   openModal = (image, tags) => {
-    console.log(image.tags);
     this.setState({
       modalImage: image,
       modalAlt: tags,
@@ -104,3 +105,14 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  searchQuery: PropTypes.string,
+  page: PropTypes.number,
+  modalImage: PropTypes.string,
+  modalAlt: PropTypes.string,
+  error: PropTypes.string,
+  isLoad: PropTypes.bool,
+  loadMore: PropTypes.bool,
+  showModal: PropTypes.bool,
+};

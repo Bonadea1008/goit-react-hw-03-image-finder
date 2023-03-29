@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from '../Modal/Modal.module.css';
 
 export class Modal extends Component {
@@ -35,3 +36,7 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  handleBackDropClick: PropTypes.func,
+};

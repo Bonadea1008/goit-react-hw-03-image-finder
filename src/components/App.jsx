@@ -29,7 +29,7 @@ export class App extends Component {
       return;
     }
     if (prevState.searchQuery !== searchQuery) {
-      this.setState({ images: [], page: 1, isLoad: true });
+      this.setState({ images: [], page: 1, isLoad: true, loadMore: false });
       this.getImages(searchQuery);
     }
 
@@ -53,7 +53,9 @@ export class App extends Component {
         });
       })
       .catch(error => this.setState({ error }))
-      .finally(this.setState({ isLoad: false }));
+      .finally(() => {
+        this.setState({ isLoad: false });
+      });
 
   searchHandler = searchQuery => {
     this.setState({

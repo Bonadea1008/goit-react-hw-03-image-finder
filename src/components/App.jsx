@@ -23,9 +23,13 @@ export class App extends Component {
     showModal: false,
   };
 
+  componentDidMount() {
+    console.log('didMount');
+  }
+
   componentDidUpdate(_, prevState) {
     const { searchQuery, page } = this.state;
-    if (searchQuery === '') {
+    if (searchQuery.trim() === '') {
       return;
     }
     if (prevState.searchQuery !== searchQuery) {
